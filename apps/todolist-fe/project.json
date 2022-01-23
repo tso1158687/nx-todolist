@@ -1,0 +1,97 @@
+{
+  "projectType": "application",
+  "root": "apps/todolist-fe",
+  "sourceRoot": "apps/todolist-fe/src",
+  "prefix": "nx-todolist",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/todolist-fe",
+        "index": "apps/todolist-fe/src/index.html",
+        "main": "apps/todolist-fe/src/main.ts",
+        "polyfills": "apps/todolist-fe/src/polyfills.ts",
+        "tsConfig": "apps/todolist-fe/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/todolist-fe/src/favicon.ico",
+          "apps/todolist-fe/src/assets"
+        ],
+        "styles": ["apps/todolist-fe/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/todolist-fe/src/environments/environment.ts",
+              "with": "apps/todolist-fe/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "todolist-fe:build:production"
+        },
+        "development": {
+          "browserTarget": "todolist-fe:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/todolist-fe/proxy.conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "todolist-fe:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/todolist-fe/src/**/*.ts",
+          "apps/todolist-fe/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/todolist-fe"],
+      "options": {
+        "jestConfig": "apps/todolist-fe/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

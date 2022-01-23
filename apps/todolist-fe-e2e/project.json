@@ -1,0 +1,28 @@
+{
+  "root": "apps/todolist-fe-e2e",
+  "sourceRoot": "apps/todolist-fe-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/todolist-fe-e2e/cypress.json",
+        "devServerTarget": "todolist-fe:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "todolist-fe:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/todolist-fe-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["todolist-fe"]
+}

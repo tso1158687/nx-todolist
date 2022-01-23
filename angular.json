@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "todolist-fe": "apps/todolist-fe",
+    "todolist-fe-e2e": "apps/todolist-fe-e2e"
+  }
+}
